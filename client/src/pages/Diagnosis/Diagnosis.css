@@ -1,7 +1,7 @@
 .input-box{
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     width: 30vw;
 }
 
@@ -9,9 +9,6 @@
 
 @media screen and (max-width: 600px) {
     .input-box{
-        /*display: flex;*/
-        /*flex-direction: column;*/
-        /*border: 2px solid red;*/
         width: 80vw;
     }
 }

@@ -6,10 +6,21 @@ CORS(app)
 
 items = []
 
-@app.route('/')
+@app.route('/www')
 def hello_world():
     print('Hello')
     return "<p>Hello<p>"
+
+
+@app.route('/symptomsdata', methods=['POST'])
+def symptoms_data():
+    try:
+        data = request.json
+        # print(data)
+        return jsonify({"message": "Data received successfully"}), 201
+    except Exception as e:
+        print(str(e))
+        return jsonify({"message": "Invalid JSON data"}), 400
 
 
 
