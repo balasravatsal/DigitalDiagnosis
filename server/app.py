@@ -6,6 +6,11 @@ CORS(app)
 
 items = []
 
+@app.route('/')
+def fun():
+    return("Welcome to the home route")
+    
+
 @app.route('/www')
 def hello_world():
     print('Hello')
