@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,9 +12,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import {NavLinkList, ProfileLinkList} from "./NavLinkList.jsx";
 import {NavLink} from "react-router-dom";
+
+
 
 // const pages = ['Home', 'Diagnosis', 'Subscription'];
 // const settings = ['Profile', 'Account', 'Logout'];
@@ -21,6 +26,18 @@ import {NavLink} from "react-router-dom";
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+    const navigate = useNavigate();
+
+    
+    
+    const handleLogout = () => {
+        Cookies.remove('jwt');
+        navigate('/')
+    }
+    
+    useEffect(() => {
+    }, [handleLogout])
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -176,6 +193,7 @@ function ResponsiveAppBar() {
                                     <Typography textAlign="center">{setting.name}</Typography>
                                 </MenuItem>
                             ))}
+                            <p style={{textAlign: "center"}} onClick={handleLogout}>LOGOUT</p>
                         </Menu>
                     </Box>
                 </Toolbar>
