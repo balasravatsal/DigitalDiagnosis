@@ -3,13 +3,15 @@ from flask_cors import CORS
 import numpy as np
 import joblib
 from joblib import load,dump
+import sklearn
+from sklearn.ensemble import RandomForestClassifier
 
 app = Flask(__name__)
 CORS(app)
 
 items = []
 
-rf_model=joblib.load('./rf_model.joblib')
+
 
 @app.route('/')
 def fun():
@@ -25,8 +27,10 @@ def hello_world():
 @app.route('/symptomsdata', methods=['POST'])
 def symptoms_data():
     try:
+        rf_model=load('./rf_model.joblib')
         data = request.json
         data=np.array(data)
+
         binarydata=[]
         for i in range(len(data)):
             if(data[i]=='yes'):
@@ -37,7 +41,7 @@ def symptoms_data():
 
         binarydata=binarydata.reshape(1,-1)
         pred=rf_model.predict(binarydata)
-        
+
         if(pred==0):
             return '(vertigo) Paroymsal  Positional Vertigo'
         elif(pred==1):
@@ -122,7 +126,7 @@ def symptoms_data():
             return 'hepatitis A'
         else:
             return "Consult your nearest doctor!"
-        
+
 
         return jsonify({"message": "Data received successfully"}), 201
     except Exception as e:
