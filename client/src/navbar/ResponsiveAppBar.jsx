@@ -193,7 +193,7 @@ function ResponsiveAppBar() {
                                     <Typography textAlign="center">{setting.name}</Typography>
                                 </MenuItem>
                             ))}
-                            <p style={{textAlign: "center"}} onClick={handleLogout}>LOGOUT</p>
+                            <p style={{textAlign: "center", "cursor": "pointer"}} onClick={handleLogout}>Logout</p>
                         </Menu>
                     </Box>
                 </Toolbar>
