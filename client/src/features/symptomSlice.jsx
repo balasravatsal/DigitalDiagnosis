@@ -52,31 +52,23 @@ const initialState = {
         {name: 'swelling_of_stomach', selected: false},
         {name: 'swelled_lymph_nodes', selected: false}
     ],
+    disease: "",
     loading: false,
     error: null
 };
 
-// export const fetchSymptoms = createAsyncThunk('symptoms/postSymptoms', async (payload, { rejectWithValue }) => {
-//     try {
-//         const response = await fetch('http://localhost:5000/symptomsdata', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(payload),
-//         });
-//
-//         if (!response.ok) {
-//             const errorData = await response.json();
-//             return rejectWithValue(errorData); // handle non-200 responses here
-//         }
-//
-//         return await response.json();
-//     } catch (error) {
-//         throw error;
-//     }
-// });
-
+export const fetchDiagnosisResult = createAsyncThunk(
+    'diagnosis/fetchDiagnosisResult',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get('http://localhost:5000/diagnosis'); // Adjust the endpoint URL accordingly
+            // console.log(response.data)
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
 
 export const submitSymptoms = createAsyncThunk(
     'symptoms/submitSymptoms',
@@ -108,6 +100,10 @@ const symptomsSlice = createSlice({
                 state.symptoms[symptomIndex].selected = value;
             }
         },
+        setDisease: (state, action) => {
+            console.log(action)
+            state.disease = action.payload; // Set the disease name from the action payload
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -123,10 +119,23 @@ const symptomsSlice = createSlice({
             .addCase(submitSymptoms.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message; // handle error message here
-            });
+            })
+            .addCase(fetchDiagnosisResult.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchDiagnosisResult.fulfilled, (state) => {
+                state.loading = false;
+                // You can handle any successful response data here if needed
+                state.error = null;
+            })
+            .addCase(fetchDiagnosisResult.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message; // handle error message here
+            })
     },
 });
 
-export const {setSymptomsReducer,} = symptomsSlice.actions
+export const {setSymptomsReducer, setDisease,} = symptomsSlice.actions
 
 export default symptomsSlice.reducer;
