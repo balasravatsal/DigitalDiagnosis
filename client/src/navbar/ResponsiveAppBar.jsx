@@ -13,10 +13,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 
-import {NavLinkList, ProfileLinkList} from "./NavLinkList.jsx";
-import {NavLink} from "react-router-dom";
+import { NavLinkList, ProfileLinkList } from "./NavLinkList.jsx";
+import { NavLink } from "react-router-dom";
 
 
 
@@ -29,13 +29,13 @@ function ResponsiveAppBar() {
 
     const navigate = useNavigate();
 
-    
-    
+
+
     const handleLogout = () => {
         Cookies.remove('jwt');
         navigate('/')
     }
-    
+
     useEffect(() => {
     }, [handleLogout])
 
@@ -66,7 +66,7 @@ function ResponsiveAppBar() {
                         href="#app-bar-with-responsive-menu"
                         sx={{
                             mr: 2,
-                            display: {xs: 'none', md: 'flex'},
+                            display: { xs: 'none', md: 'flex' },
                             fontFamily: 'roboto',
                             fontWeight: 700,
                             letterSpacing: '.1rem',
@@ -77,7 +77,7 @@ function ResponsiveAppBar() {
                         DigitalDiagnosis
                     </Typography>
 
-                    <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -86,7 +86,7 @@ function ResponsiveAppBar() {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon/>
+                            <MenuIcon />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -103,14 +103,14 @@ function ResponsiveAppBar() {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: {xs: 'block', md: 'none'},
+                                display: { xs: 'block', md: 'none' },
                             }}
                         >
                             {NavLinkList.map((page) => (
                                 <MenuItem key={page.id} onClick={handleCloseNavMenu}>
                                     <NavLink
                                         to={page.path}
-                                        style={{textDecoration: 'none', color: 'inherit'}}
+                                        style={{ textDecoration: 'none', color: 'inherit' }}
                                     >
                                         <Typography textAlign="center">{page.name}</Typography>
                                     </NavLink>
@@ -126,7 +126,7 @@ function ResponsiveAppBar() {
                         href="#app-bar-with-responsive-menu"
                         sx={{
                             mr: 2,
-                            display: {xs: 'flex', md: 'none'},
+                            display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
                             fontFamily: 'roboto',
                             fontWeight: 700,
@@ -137,19 +137,19 @@ function ResponsiveAppBar() {
                     >
                         DigitalDiagnosis
                     </Typography>
-                    <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {NavLinkList.map((page) => (
                             <NavLink
                                 key={page.id}
                                 to={page.path}
 
                                 // activeClassName="active"
-                                style={{textDecoration: 'none', color: 'inherit', margin: '8px'}}
+                                style={{ textDecoration: 'none', color: 'inherit', margin: '8px' }}
                             >
                                 <Button
                                     key={page.id}
                                     onClick={handleCloseNavMenu}
-                                    sx={{color: 'white', display: 'block'}}
+                                    sx={{ color: 'white', display: 'block' }}
                                 >
                                     {page.name}
                                 </Button>
@@ -164,16 +164,25 @@ function ResponsiveAppBar() {
                             //     {page.name}
                             // </Button>
                         ))}
+                        {
+                            Cookies.get('jwt') ? <></> :
+                                <>
+                                    <NavLink to="/login" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '0.7px', marginLeft: '13px' }}>
+                                        <Typography fontSize="14px" textAlign="center" >LOGIN</Typography>
+                                    </NavLink>
+                                </>
+                        }
                     </Box>
 
-                    <Box sx={{flexGrow: 0}}>
+
+                    <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             </IconButton>
                         </Tooltip>
                         <Menu
-                            sx={{mt: '45px'}}
+                            sx={{ mt: '45px' }}
                             id="menu-appbar"
                             anchorEl={anchorElUser}
                             anchorOrigin={{
@@ -193,7 +202,12 @@ function ResponsiveAppBar() {
                                     <Typography textAlign="center">{setting.name}</Typography>
                                 </MenuItem>
                             ))}
-                            <p style={{textAlign: "center"}} onClick={handleLogout}>LOGOUT</p>
+                            {Cookies.get('jwt') ?
+                                <>
+                                    <MenuItem>
+                                        <Typography onClick={handleLogout} textAlign='center'>Logout</Typography>
+                                    </MenuItem>
+                                </> : <></>}
                         </Menu>
                     </Box>
                 </Toolbar>

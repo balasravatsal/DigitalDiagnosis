@@ -1,11 +1,15 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, make_response
 from flask_cors import CORS
 import numpy as np
 import joblib
 from joblib import load,dump
+from flask_jwt_extended import JWTManager, create_access_token, set_access_cookies
 
 app = Flask(__name__)
 CORS(app)
+
+app.config['JWT_SECRET_KEY'] = 'your-secret-key'
+jwt = JWTManager(app)
 
 items = []
 
@@ -143,6 +147,23 @@ def diagnosis():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
+@app.route('/login', methods=['POST'])
+def login():
+    try:
+        username = request.json["username"]
+        password = request.json["password"]
+
+        token = create_access_token(identity=username) 
+
+        response = make_response(jsonify(jwt=token))
+        set_access_cookies(response, token)
+
+        return response, 200
+    
+    except Exception as e:
+        print(str(e))
+        return jsonify({"message": "Internal server error"}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
