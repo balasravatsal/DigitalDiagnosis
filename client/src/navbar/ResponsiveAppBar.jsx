@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,8 +13,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
-
+// import Cookies from 'js-cookie';
+import axios from 'axios'
 import {NavLinkList, ProfileLinkList} from "./NavLinkList.jsx";
 import {NavLink} from "react-router-dom";
 
@@ -31,13 +31,19 @@ function ResponsiveAppBar() {
 
     
     
-    const handleLogout = () => {
-        Cookies.remove('jwt');
-        navigate('/')
+    function handleLogout(){
+        let response=axios.post('http://localhost:5000/logout')
+        if(response.status===200){
+            console.log("Successfully logged out")
+            navigate('/')
+        }
+        else{
+            console.log("Failed to Logout, Try again!")
+        }
     }
     
-    useEffect(() => {
-    }, [handleLogout])
+    // useEffect(() => {
+    // }, [handleLogout])
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);

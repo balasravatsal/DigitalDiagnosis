@@ -1,15 +1,34 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file,session,redirect
 from flask_cors import CORS
 import numpy as np
 import joblib
 from joblib import load,dump
 import sklearn
 from sklearn.ensemble import RandomForestClassifier
+import pyrebase
+
+
 
 app = Flask(__name__)
 CORS(app) 
 
+config = {
+  'apiKey': "AIzaSyBEvnxaUUvWQc0OUMqrgYWM_vzi_AHlUas",
+  'authDomain': "online-disease-diagnosis.firebaseapp.com",
+  'projectId': "online-disease-diagnosis",
+  'storageBucket': "online-disease-diagnosis.appspot.com",
+  'messagingSenderId': "966525609724",
+  'appId': "1:966525609724:web:9d95dc295fac9a609a9979",
+  'measurementId': "G-MWV9KTHEC7",
+  'databaseURL':''
+}
+
+firebase=pyrebase.initialize_app(config)
+auth=firebase.auth()
+app.secret_key='oppenheimer'
+
 items = [] 
+
 
 prediction_labels=['(vertigo) Paroymsal  Positional Vertigo', 'AIDS', 'Acne',
  'Alcoholic hepatitis', 'Allergy', 'Arthritis', 'Bronchial Asthma',
@@ -28,10 +47,27 @@ def fun():
     return("Welcome to the home route")
     
 
-@app.route('/www',methods=['GET'])
+@app.route('/www', methods=['GET'])
 def hello_world():
     print('Hello')
     return "<p>Hello<p>"
+
+
+@app.route('/login',methods=['POST'])
+def login():
+    data=request.json
+    email=str(data['email'])
+    password=str(data['password'])   
+    try:    # user= await auth.create_user_with_email_and_password(email,password)
+        user = auth.sign_in_with_email_and_password(email,password)
+    
+        if(user):
+            print("Success")
+        return jsonify("Successfully logged in")
+    except:
+        print('Invalid credentials')
+        session['user']=email
+        return jsonify("Invaild user!")
 
 
 @app.route('/symptomsdata', methods=['POST'])

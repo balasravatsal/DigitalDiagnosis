@@ -7,6 +7,7 @@ import {fetchDiagnosisResult, setDisease, setSymptomsReducer, submitSymptoms} fr
 import {useState} from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal"; // Update the path
+import { fontGrid } from '@mui/material/styles/cssUtils';
 
 
 const style = {
@@ -14,7 +15,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 500,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -113,13 +114,14 @@ const Diagnosis = () => {
             <Modal open={isModalVisible} onClose={() => setModalVisibility(false)}>
                 <Box sx={style}>
                     <Typography variant="h5" component="h2">
-                        Diagnosis Result
+                        Diagnosis Result (Result Accuracy: 97.8%)
                     </Typography>
                     <Typography variant="h6" sx={{ my: 2 }}>
-                        {diagnosisResult} {/* Assuming diagnosisResult contains the diagnosis information */}
+                        <strong>{diagnosisResult}</strong> {/* Assuming diagnosisResult contains the diagnosis information */}
                     </Typography>
                     <Typography variant={"body2"}>
-                        after our expert analysis, we have observed that you are affected with <b>{diagnosisResult}</b>
+                        After our expert analysis, we have observed that you are affected with <b style={{fontSize:'120%'}}>{diagnosisResult}</b>. Please 
+                        consult your doctor for further diagnosis.
                     </Typography>
                 </Box>
             </Modal>

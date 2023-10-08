@@ -99,27 +99,45 @@
 // export default LoginSignupPage;
 
 
-import React, {useState} from 'react';
+import {useState} from 'react';
+import axios from 'axios'
 import './LoginSignupPage.css';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const LoginSignupPage = () => {
+    
+    const navigate=useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLogin, setIsLogin] = useState(true);
 
-    const handleSubmit = (e) => {
+    async function handleSubmit(e){
+        let formData={email:email,password:password}
         e.preventDefault();
+        
+        let response=await axios.post('http://localhost:5000/login',formData);
+
+        // if(response.status===200){
+        //     console.log(response.data)
+            navigate('/diagnosis')
+        // }
+        // else{
+        //     console.log(response)
+        // }
+        
         // Here, you can implement your authentication logic.
         // For simplicity, let's just log the data.
-        console.log('Email:', email);
-        console.log('Password:', password);
+        // console.log('Email:', email);
+        // console.log('Password:', password);
     };
 
     return (
         <div className={"loginbody"}>
             <div className="LoginSignupPage">
                 <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
-                <form onSubmit={handleSubmit}>
+                <form>
                     <label>
                         Email:
                         <input
@@ -138,7 +156,7 @@ const LoginSignupPage = () => {
                             required
                         />
                     </label>
-                    <button type="submit">{isLogin ? 'Login' : 'Sign Up'}</button>
+                    <button onClick={handleSubmit} type="submit">{isLogin ? 'Login' : 'Sign Up'}</button>
                 </form>
                 <p onClick={() => setIsLogin(!isLogin)}>
                     {isLogin ? 'Don\'t have an account? Sign Up' : 'Already have an account? Login'}
