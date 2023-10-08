@@ -20,13 +20,13 @@
    ```
 4. Run the following commands in separate terminals:
 
-   Starting the flask server:
-   ```bash
-   cd server
-   python app.py
-   ```
-  Starting the frontend
-   ```bash
-   cd client
-   npm run dev
-   ```
+      Starting the flask server:
+      ```bash
+      cd server
+      python app.py
+      ```
+     Starting the frontend
+      ```bash
+      cd client
+      npm run dev
+      ```
