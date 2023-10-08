@@ -11,6 +11,8 @@ CORS(app)
 
 items = [] 
 
+global prediction
+
 prediction_labels=['(vertigo) Paroymsal  Positional Vertigo', 'AIDS', 'Acne',
  'Alcoholic hepatitis', 'Allergy', 'Arthritis', 'Bronchial Asthma',
  'Cervical spondylosis', 'Chicken pox', 'Chronic cholestasis', 'Common Cold',
@@ -51,12 +53,21 @@ def symptoms_data():
         binarydata=binarydata.reshape(1,-1)
         pred=rf_model.predict(binarydata)
         pred=int(pred)
-#       
-        return jsonify(prediction_labels[pred])
+        prediction=prediction_labels[pred]
+        print(prediction)
+        return jsonify(prediction)
 
     except Exception as e:
         print(str(e))
         return jsonify({"message": "Invalid JSON data"}), 400
+
+@app.route('/diagnosis', methods=['GET'])
+def diagnosis():
+    try:
+        print(prediction)
+        return jsonify({'disease': prediction}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
