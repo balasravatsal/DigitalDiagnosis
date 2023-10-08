@@ -1,6 +1,6 @@
 # Digital Diagnosis
 
-### An Online disease diagnosis platform allowing patients to efficiently detect and diagnose diseases in patients based on their symptoms. This also allows doctors to cross-examine their 
+### An Online disease diagnosis platform allowing patients to efficiently detect and diagnose diseases based on their symptoms. This also allows doctors to cross-examine their 
 ### results with an accuracy of 100%
 
 ### Step:
