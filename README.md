@@ -1,9 +1,8 @@
-# Digital Diagnosis
+## Digital Diagnosis
 
-### An Online disease diagnosis platform allowing patients to efficiently detect and diagnose diseases based on their symptoms. This also allows doctors to cross-examine their 
-### results with an accuracy of 100%
+#### An Online disease diagnosis platform allowing patients to efficiently detect and diagnose diseases based on their symptoms. This also allows doctors to cross-examine their results with an accuracy of 97.8%
 
-### Step:
+#### Step:
 1. Clone the repository:
    ```bash
    git clone https://github.com/balasravatsal/DigitalDiagnosis.git
