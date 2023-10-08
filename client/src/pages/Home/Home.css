@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #777777; /* Text color set to blue */
+}
+
+header {
+    background-image: url('https://www.scheer-group.com/fileadmin/scheer/Header-und-Slider/2022-08-Website-Header-Healthcare-v2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff; /* Text color set to white for better readability */
+    color: #2546fd;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+nav {
+    background-image: url('https://www.scheer-group.com/fileadmin/scheer/Header-und-Slider/2022-08-Website-Header-Healthcare-v2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff; /* Text color set to white for better readability */
+    text-align: center;
+    padding: 10px 0;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-menu li {
+    display: inline;
+    margin: 0 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Change the color for About and Contact links */
+.nav-menu li a[href="#about"],
+.nav-menu li a[href="#contact"],
+.nav-menu li a[href="#services"]{
+    color: #007BFF;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: transparent;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #FF9B9B;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#faqs {
+    background-color: transparent;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#faqs h2 {
+    font-size: 2em;
+    margin: 0;
+}
+
+#faqs ul {
+    list-style: none;
+    padding: 0;
+}
+
+#faqs li {
+    margin-bottom: 10px;
+}
+
+#image-section {
+    background-color: transparent;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#image-section img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Add background image for Contact and About sections */
+footer,#contact, #about {
+    background-image: url('https://www.scheer-group.com/fileadmin/scheer/Header-und-Slider/2022-08-Website-Header-Healthcare-v2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff; /* Text color set to white for better readability */
+}
