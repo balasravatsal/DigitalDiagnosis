@@ -21,8 +21,8 @@ function App() {
                         <Route path={'/'} element={
                             <SharedLayout/>
                         }>
-                            <Route index element={<Home/>} />
-                            <Route path={'/login'} element={<LoginSignupPage/>}/>
+                            <Route index element={<LoginSignupPage/>} />
+                            <Route path={'/home'} element={<Home/>}/>
                             <Route path={'/diagnosis'} element={<Diagnosis/>} />
                             <Route path={'/subscription'} element={<Subscription/>} />
                             <Route path={'/profile'} element={<Profile/>} />

@@ -63,11 +63,12 @@ def login():
     
         if(user):
             print("Success")
-        return jsonify("Successfully logged in")
+            session['user']=email
+            return jsonify("Successfully logged in")
+            
     except:
         print('Invalid credentials')
-        session['user']=email
-        return jsonify("Invaild user!")
+        return jsonify({'error': "Invaild user!"}),500
 
 
 @app.route('/symptomsdata', methods=['POST'])

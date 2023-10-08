@@ -118,20 +118,15 @@ const LoginSignupPage = () => {
         e.preventDefault();
         
         let response=await axios.post('http://localhost:5000/login',formData);
+        if(response.status==200){
+        console.log(response.data)
+        navigate('/home')
+        }
+        else{
+            alert("Invalid credentials")
+        }
 
-        // if(response.status===200){
-        //     console.log(response.data)
-            navigate('/diagnosis')
-        // }
-        // else{
-        //     console.log(response)
-        // }
-        
-        // Here, you can implement your authentication logic.
-        // For simplicity, let's just log the data.
-        // console.log('Email:', email);
-        // console.log('Password:', password);
-    };
+    }
 
     return (
         <div className={"loginbody"}>
