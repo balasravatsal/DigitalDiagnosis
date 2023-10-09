@@ -8,6 +8,8 @@ import Subscription from "./pages/Subscription/Subscription.jsx";
 import Profile from "./pages/UserDetetails/Profile.jsx";
 import Account from "./pages/UserDetetails/Account.jsx";
 import Login from './pages/Login/Login';
+import Auth from './pages/Auth/Auth';
+
 
 function App() {
 
@@ -26,6 +28,7 @@ function App() {
                             <Route path={'/profile'} element={<Profile/>} />
                             <Route path={'/account'} element={<Account/>} />
                             <Route path={'/login'} element={<Login/>} />
+                            <Route path={'/glogin'} element={<Auth/>} />
 
                         </Route>
                     </Routes>
