@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 
 const card = (
     <React.Fragment>
-        <CardContent>
+        <CardContent >
             <Typography variant="h5" component="div">
                 Individual Level Subscription
             </Typography>
@@ -83,11 +83,11 @@ const card3 = (
 
 export default function Subscription() {
     return (
-        <div style={{ height: "85vh", border: "2px solid red", justifyContent: "center", display: "flex", alignItems: "center" }}>
+        <div style={{ height: "85vh", justifyContent: "center", display: "flex", alignItems: "center" }}>
             <Box sx={{ maxWidth: "90%", display: "flex" }}>
-                <Card variant="outlined" sx={{ width: "50%", marginX: "2rem", padding: "2rem", border: "4px solid grey" }}>{card}</Card>
-                <Card variant="outlined" sx={{ width: "50%", marginX: "2rem", padding: "2rem", border: "4px solid grey" }}>{card2}</Card>
-                <Card variant="outlined" sx={{ width: "50%", marginX: "2rem", padding: "2rem", border: "4px solid grey" }}>{card3}</Card>
+                <Card variant="outlined" sx={{ width: "50%", marginX: "2rem", padding: "2rem", border: "4px solid grey", borderRadius:"14px"}}>{card}</Card>
+                <Card variant="outlined" sx={{ width: "50%", marginX: "2rem", padding: "2rem", border: "4px solid grey", borderRadius:"14px" }}>{card2}</Card>
+                <Card variant="outlined" sx={{ width: "50%", marginX: "2rem", padding: "2rem", border: "4px solid grey", borderRadius:"14px" }}>{card3}</Card>
             </Box>
         </div>
     );
