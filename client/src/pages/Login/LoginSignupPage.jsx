@@ -112,14 +112,16 @@ const LoginSignupPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLogin, setIsLogin] = useState(true);
+    const [message,setMessage]=useState("")
 
     async function handleSubmit(e){
-        let formData={email:email,password:password}
+        let formData={email:email,password:password,loginStatus:isLogin}
         e.preventDefault();
         
         let response=await axios.post('http://localhost:5000/login',formData);
         if(response.status==200){
         console.log(response.data)
+        setMessage(response.data)
         navigate('/home')
         }
         else{
@@ -130,6 +132,7 @@ const LoginSignupPage = () => {
 
     return (
         <div className={"loginbody"}>
+            <p>{message}</p>
             <div className="LoginSignupPage">
                 <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
                 <form>

@@ -35,7 +35,7 @@ function ResponsiveAppBar() {
         let response=axios.post('http://localhost:5000/logout')
         if(response.status===200){
             console.log("Successfully logged out")
-            navigate('/')
+            navigate('/login')
         }
         else{
             console.log("Failed to Logout, Try again!")

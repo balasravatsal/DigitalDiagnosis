@@ -53,22 +53,51 @@ def hello_world():
     return "<p>Hello<p>"
 
 
+@app.route('/logout', methods=['POST'])
+def logout():
+    # if('user' in session):
+    session.pop('user')
+    print("Logged out!")
+    return jsonify("Logged out successfully!")
+    # else:
+    #     print("Error in loggin out")
+    #     return jsonify({'error':"Not logged out"}),500
+
+
 @app.route('/login',methods=['POST'])
 def login():
     data=request.json
     email=str(data['email'])
     password=str(data['password'])   
-    try:    # user= await auth.create_user_with_email_and_password(email,password)
+    state=str(data['loginStatus'])
+    print(state)
+
+    if(state):
+        # user= await auth.create_user_with_email_and_password(email,password)
         user = auth.sign_in_with_email_and_password(email,password)
-    
+        
         if(user):
             print("Success")
             session['user']=email
+            print('Successfully logged in')
             return jsonify("Successfully logged in")
-            
-    except:
-        print('Invalid credentials')
-        return jsonify({'error': "Invaild user!"}),500
+        
+        else:
+            print("Unable to Login")
+            return jsonify({'error': "Unable to create account"}),500
+
+    elif(not state):
+            try:    
+                user = auth.create_user_with_email_and_password(email,password)
+        
+                if(user):
+                    session['user']=email
+                    print("Successfully Created the account")
+                    return jsonify("Successfully Created the account")
+                
+            except:
+                print('Unable to create account')
+                return jsonify({'error': "Unable to create account"}),500
 
 
 @app.route('/symptomsdata', methods=['POST'])
