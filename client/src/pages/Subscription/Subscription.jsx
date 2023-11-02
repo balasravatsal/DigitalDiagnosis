@@ -11,18 +11,19 @@ const card = (
     <React.Fragment>
         <CardContent>
             <Typography variant="h5" component="div">
-                Diagnosis
+                Individual Level Subscription
             </Typography>
-            <Typography sx={{mb: 1.5}} color="text.secondary">
-                Disease will be diagnosed with the given inputs
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                Offer monthly or annual subscription plans for individual users.
+                Implement tiered pricing structures based on access and features.
+
             </Typography>
             <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi at delectus dicta, ex ipsum molestias odio quasi, rem sunt tempore vitae? Cum debitis dolores error eveniet ex inventore libero natus, nisi placeat possimus repellendus, tempora temporibus ut, vel voluptate.
+                Features:
                 <ul>
-                    <li>Blah</li>
-                    <li>Blah</li>
-                    <li>Blah</li>
-                    <li>Blah</li>
+                    <li>Personalized health recommendations</li>
+                    <li>Access to historical health data</li>
+                    <li>customer support</li>
                 </ul>
             </Typography>
         </CardContent>
@@ -36,18 +37,41 @@ const card2 = (
     <React.Fragment>
         <CardContent>
             <Typography variant="h5" component="div">
-                Diagnosis With Hospital Location
+                Small Clinic Subscription
             </Typography>
-            <Typography sx={{mb: 1.5}} color="text.secondary">
-                Disease will be diagnosed with the given inputs
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                Seasonal subscriptions tailored for small clinics, especially in regions with seasonal health issues.
             </Typography>
             <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi at delectus dicta, ex ipsum molestias odio quasi, rem sunt tempore vitae? Cum debitis dolores error eveniet ex inventore libero natus, nisi placeat possimus repellendus, tempora temporibus ut, vel voluptate.
+                Features:
                 <ul>
-                    <li>Blah</li>
-                    <li>Blah</li>
-                    <li>Blah</li>
-                    <li>Blah</li>
+                    <li>Seasonal Subscription</li>
+                    <li>Flexible Pricing</li>
+                    <li>Tailored Features</li>
+                </ul>
+            </Typography>
+        </CardContent>
+        <CardActions>
+            <Button size="small">Get Subscription</Button>
+        </CardActions>
+    </React.Fragment>
+);
+
+const card3 = (
+    <React.Fragment>
+        <CardContent>
+            <Typography variant="h5" component="div">
+                Large Scale Hospital Licensing
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            Provide an annual licensing model for large hospitals with high traffic.
+            </Typography>
+            <Typography variant="body2">
+                Features:
+                <ul>
+                    <li>Annual Licensing</li>
+                    <li>24/7 Availability</li>
+                    <li>Customization and Integration</li>
                 </ul>
             </Typography>
         </CardContent>
@@ -59,10 +83,11 @@ const card2 = (
 
 export default function Subscription() {
     return (
-        <div style={{height: "85vh", border: "2px solid red", justifyContent: "center", display: "flex", alignItems: "center"}}>
-            <Box sx={{maxWidth: "70%", display: "flex"}}>
-                <Card variant="outlined" sx={{marginX: "2rem", padding: "2rem", border: "4px solid grey"}}>{card}</Card>
-                <Card variant="outlined" sx={{marginX: "2rem", padding: "2rem", border: "4px solid grey"}}>{card2}</Card>
+        <div style={{ height: "85vh", border: "2px solid red", justifyContent: "center", display: "flex", alignItems: "center" }}>
+            <Box sx={{ maxWidth: "90%", display: "flex" }}>
+                <Card variant="outlined" sx={{ width: "50%", marginX: "2rem", padding: "2rem", border: "4px solid grey" }}>{card}</Card>
+                <Card variant="outlined" sx={{ width: "50%", marginX: "2rem", padding: "2rem", border: "4px solid grey" }}>{card2}</Card>
+                <Card variant="outlined" sx={{ width: "50%", marginX: "2rem", padding: "2rem", border: "4px solid grey" }}>{card3}</Card>
             </Box>
         </div>
     );
