@@ -1,0 +1,18 @@
+.app-container {
+    margin: 0;
+    padding: 0;
+    background-image: url('../public/clean-medical-background_53876-116875.webp'); /* Replace 'path/to/your/background-image.jpg' with the actual path to your background image file */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
